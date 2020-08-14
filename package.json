@@ -9,7 +9,8 @@
     "@material-ui/icons": "latest",
     "@material-ui/styles": "4.10.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-router-dom": "5.2.0"
   },
   "keywords": [],
   "name": "react-material-right-bottom-menu",

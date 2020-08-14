@@ -11,6 +11,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import LGPDOK_Logo from "@material-ui/icons/VerifiedUser";
 //import LGPDOK_Logo from '../../../images/LGPD-OK.svg'
 import "./Widget.scss";
+import Form from "./Form";
 
 const lgpdok_info =
   "Lei Geral de Proteção de Dados <br><br>" +
@@ -51,13 +52,20 @@ const StyledMenuItem = withStyles((theme) => ({
 
 const timeoutLength = 200;
 
+const availableForms = {
+  ENCARREGADO: "Encarregado",
+  SOLICITACAO: "Solicitações",
+  DADOS: "Mapa de Dados"
+};
+
 class Widget extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       anchorEl: null,
-      isMouseHover: false
+      isMouseHover: false,
+      activeForm: null
     };
   }
 
@@ -70,7 +78,16 @@ class Widget extends React.Component {
   };
 
   handleClose = () => {
-    this.setState({ anchorEl: null });
+    this.setState({
+      anchorEl: null
+    });
+  };
+
+  handleClick_SOL = () => {
+    this.setState({
+      anchorEl: null,
+      activeForm: availableForms.SOLICITACAO
+    });
   };
 
   handleMouseHover = ({ mouseHover }) => {
@@ -118,7 +135,7 @@ class Widget extends React.Component {
             onMouseLeave: this.leaveMenu
           }}
         >
-          <StyledMenuItem onClick={this.handleClose}>
+          <StyledMenuItem onClick={this.handleClick_SOL}>
             <ListItemIcon>
               <QuestionAnswerIcon fontSize="small" />
             </ListItemIcon>
@@ -137,6 +154,7 @@ class Widget extends React.Component {
             <ListItemText primary="Sobre Dados Pessoais" />
           </StyledMenuItem>
         </StyledMenu>
+        {this.state.activeForm === availableForms.SOLICITACAO && <Form />}
       </div>
     );
   }
